@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Retirement Planner - Secure Your Financial Future</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="paypal-logo">
+                <div class="paypal-text-logo">
+                    <span class="logo-pay">Pay</span><span class="logo-pal">Pal</span>
+                </div>
+            </div>
+            <h1><i class="fas fa-shield-check"></i> Retirement Planner</h1>
+            <p>Build your secure financial future with PayPal's trusted planning tools</p>
+            <div class="header-features">
+                <span><i class="fas fa-lock"></i> Secure & Private</span>
+                <span><i class="fas fa-calculator"></i> Expert Calculations</span>
+                <span><i class="fas fa-chart-trending-up"></i> Smart Projections</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="calculator-container single-page">
+                <div class="input-section full-width">
+                    <form id="retirement-form">
+                        <!-- Personal Information Section -->
+                        <div class="section">
+                            <h2><i class="fas fa-user"></i> Personal Information</h2>
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label for="current-age">Current Age</label>
+                                    <input type="number" id="current-age" name="currentAge" min="18" max="100" value="30" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="retirement-age">Planned Retirement Age</label>
+                                    <input type="number" id="retirement-age" name="retirementAge" min="50" max="80" value="65" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="life-expectancy">Life Expectancy</label>
+                                    <input type="number" id="life-expectancy" name="lifeExpectancy" min="70" max="120" value="85" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="annual-income">Current Annual Income</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="annual-income" name="annualIncome" min="0" step="1000" value="75000" required>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="annual-raise">Expected Annual Salary Increase</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="annual-raise" name="annualRaise" min="0" max="10" step="0.1" value="3">
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="annual-bonus">Annual Bonus Income</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="annual-bonus" name="annualBonus" min="0" step="1000" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Spouse Information Section -->
+                        <div class="section">
+                            <h2><i class="fas fa-heart"></i> Spouse Information (Optional)</h2>
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label for="spouse-age">Spouse Current Age</label>
+                                    <input type="number" id="spouse-age" name="spouseAge" min="18" max="100" value="">
+                                </div>
+                                <div class="input-group">
+                                    <label for="spouse-retirement-age">Spouse Retirement Age</label>
+                                    <input type="number" id="spouse-retirement-age" name="spouseRetirementAge" min="50" max="80" value="">
+                                </div>
+                                <div class="input-group">
+                                    <label for="spouse-income">Spouse Annual Income</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="spouse-income" name="spouseIncome" min="0" step="1000" value="">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="spouse-social-security">Spouse Social Security (Monthly)</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="spouse-social-security" name="spouseSocialSecurity" min="0" step="100" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Current Financial Status Section -->
+                        <div class="section">
+                            <h2><i class="fas fa-wallet"></i> Current Financial Status</h2>
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label for="current-401k">Current 401(k) Balance</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="current-401k" name="current401k" min="0" step="1000" value="40000">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="current-ira">Current IRA Balance</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="current-ira" name="currentIRA" min="0" step="1000" value="10000">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="current-hsa">Current HSA Balance</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="current-hsa" name="currentHSA" min="0" step="1000" value="5000">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="monthly-401k-contribution">Monthly 401(k) Contribution</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="monthly-401k-contribution" name="monthly401kContribution" min="0" step="50" value="400">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="monthly-ira-contribution">Monthly IRA Contribution</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="monthly-ira-contribution" name="monthlyIRAContribution" min="0" step="50" value="100">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="monthly-hsa-contribution">Monthly HSA Contribution</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="monthly-hsa-contribution" name="monthlyHSAContribution" min="0" step="50" value="300">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="employer-match">Employer 401(k) Match (%)</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="employer-match" name="employerMatch" min="0" max="100" step="0.5" value="4">
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="other-investments">Other Investments/Assets</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="other-investments" name="otherInvestments" min="0" step="1000" value="25000">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="emergency-fund">Emergency Fund</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="emergency-fund" name="emergencyFund" min="0" step="1000" value="15000">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Debt Information Section -->
+                        <div class="section">
+                            <h2><i class="fas fa-credit-card"></i> Debt Information</h2>
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label for="mortgage-balance">Remaining Mortgage Balance</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="mortgage-balance" name="mortgageBalance" min="0" step="5000" value="200000">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="mortgage-payment">Monthly Mortgage Payment</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="mortgage-payment" name="mortgagePayment" min="0" step="100" value="1800">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="mortgage-years-left">Years Left on Mortgage</label>
+                                    <input type="number" id="mortgage-years-left" name="mortgageYearsLeft" min="0" max="40" value="20">
+                                </div>
+                                <div class="input-group">
+                                    <label for="other-debt">Other Monthly Debt Payments</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="other-debt" name="otherDebt" min="0" step="50" value="300">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Investment & Returns Section -->
+                        <div class="section">
+                            <h2><i class="fas fa-chart-line"></i> Investment & Returns</h2>
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label for="annual-return">Expected Annual Return</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="annual-return" name="annualReturn" min="0" max="20" step="0.1" value="7" required>
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="inflation-rate">Expected Inflation Rate</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="inflation-rate" name="inflationRate" min="0" max="10" step="0.1" value="3" required>
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="pre-retirement-return">Pre-Retirement Return</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="pre-retirement-return" name="preRetirementReturn" min="0" max="20" step="0.1" value="8">
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="post-retirement-return">Post-Retirement Return</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="post-retirement-return" name="postRetirementReturn" min="0" max="15" step="0.1" value="5">
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Retirement Goals Section -->
+                        <div class="section">
+                            <h2><i class="fas fa-bullseye"></i> Retirement Goals</h2>
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label for="income-replacement">Income Replacement Ratio</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="income-replacement" name="incomeReplacement" min="40" max="120" step="5" value="80" required>
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="desired-monthly-income">Desired Monthly Retirement Income</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="desired-monthly-income" name="desiredMonthlyIncome" min="0" step="100" value="5000">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="healthcare-costs">Monthly Healthcare Costs</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="healthcare-costs" name="healthcareCosts" min="0" step="50" value="500">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="travel-budget">Annual Travel/Leisure Budget</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="travel-budget" name="travelBudget" min="0" step="1000" value="10000">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="ltc-insurance">Long-term Care Insurance Premium (Monthly)</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="ltc-insurance" name="ltcInsurance" min="0" step="50" value="0">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="retirement-location">Cost of Living Change in Retirement</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="retirement-location" name="retirementLocation" min="-50" max="100" step="5" value="0">
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="part-time-income">Part-time Work Income in Early Retirement (Monthly)</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="part-time-income" name="partTimeIncome" min="0" step="100" value="0">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="children-support">Children Support/Education (Monthly)</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="children-support" name="childrenSupport" min="0" step="100" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Security & Benefits Section -->
+                        <div class="section">
+                            <h2><i class="fas fa-shield-alt"></i> Social Security & Benefits</h2>
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label for="social-security">Expected Monthly Social Security</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="social-security" name="socialSecurity" min="0" step="100" value="2000">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="pension">Monthly Pension Benefits</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="pension" name="pension" min="0" step="100" value="0">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="other-income">Other Monthly Retirement Income</label>
+                                    <div class="input-with-symbol">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" id="other-income" name="otherIncome" min="0" step="100" value="0">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="ss-start-age">Social Security Start Age</label>
+                                    <input type="number" id="ss-start-age" name="ssStartAge" min="62" max="70" value="67">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tax Considerations Section -->
+                        <div class="section">
+                            <h2><i class="fas fa-calculator"></i> Tax Considerations</h2>
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label for="current-tax-rate">Current Tax Rate</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="current-tax-rate" name="currentTaxRate" min="0" max="50" step="1" value="22">
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="retirement-tax-rate">Expected Retirement Tax Rate</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="retirement-tax-rate" name="retirementTaxRate" min="0" max="50" step="1" value="18">
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="roth-percentage">Roth Contribution Percentage</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="roth-percentage" name="rothPercentage" min="0" max="100" step="5" value="30">
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="state-tax">State Tax Rate</label>
+                                    <div class="input-with-symbol">
+                                        <input type="number" id="state-tax" name="stateTax" min="0" max="15" step="0.5" value="5">
+                                        <span class="percent-symbol">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="calculate-section">
+                            <button type="button" id="calculate-btn" class="calculate-btn paypal-btn">
+                                <i class="fas fa-shield-check"></i> Calculate My Secure Future
+                            </button>
+                            <p class="security-note">
+                                <i class="fas fa-lock"></i> Your data is encrypted and never stored
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="paypal-text">PayPal</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Security Center</a>
+                    <a href="#">Help & Contact</a>
+                </div>
+            </div>
+            <p>&copy; 2024 PayPal Holdings, Inc. All rights reserved. Plan wisely, retire confidently with PayPal.</p>
+            <p class="disclaimer">This tool is for educational purposes only and does not constitute financial advice.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
