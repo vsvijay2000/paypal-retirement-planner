@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Retirement Planner - Your Results</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="paypal-logo">
+                <div class="paypal-text-logo">
+                    <span class="logo-pay">Pay</span><span class="logo-pal">Pal</span>
+                </div>
+            </div>
+            <h1><i class="fas fa-chart-line-up"></i> Your Secure Financial Future</h1>
+            <p>Comprehensive retirement analysis powered by PayPal's trusted calculations</p>
+            <div class="results-navigation">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Modify Inputs
+                </a>
+                <button onclick="window.print()" class="print-btn">
+                    <i class="fas fa-print"></i> Print Report
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="results-container">
+                <!-- Tab Navigation -->
+                <div class="tab-navigation">
+                    <button class="tab-btn active" data-tab="overview">
+                        <i class="fas fa-chart-pie"></i> Overview
+                    </button>
+                    <button class="tab-btn" data-tab="projections">
+                        <i class="fas fa-chart-line"></i> Projections
+                    </button>
+                    <button class="tab-btn" data-tab="accounts">
+                        <i class="fas fa-wallet"></i> Account Details
+                    </button>
+                    <button class="tab-btn" data-tab="analysis">
+                        <i class="fas fa-calculator"></i> Analysis
+                    </button>
+                    <button class="tab-btn" data-tab="recommendations">
+                        <i class="fas fa-lightbulb"></i> Recommendations
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Overview Tab -->
+                    <div class="tab-panel active" id="overview">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-chart-pie"></i> Retirement Overview</h2>
+                            <p>Your comprehensive retirement summary at a glance</p>
+                        </div>
+                        
+                        <div class="summary-cards">
+                            <div class="summary-card">
+                                <div class="card-icon"><i class="fas fa-dollar-sign"></i></div>
+                                <div class="card-content">
+                                    <h3>Total at Retirement</h3>
+                                    <p class="card-value" id="total-at-retirement">$0</p>
+                                    <p class="card-subtitle">Projected portfolio value</p>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-card">
+                                <div class="card-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="card-content">
+                                    <h3>Monthly Income Available</h3>
+                                    <p class="card-value" id="monthly-income-available">$0</p>
+                                    <p class="card-subtitle">From all sources</p>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-card">
+                                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                                <div class="card-content">
+                                    <h3>Income Gap</h3>
+                                    <p class="card-value" id="income-gap">$0</p>
+                                    <p class="card-subtitle">Shortfall or surplus</p>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-card">
+                                <div class="card-icon"><i class="fas fa-hourglass-half"></i></div>
+                                <div class="card-content">
+                                    <h3>Money Lasts Until</h3>
+                                    <p class="card-value" id="money-lasts-until">Age 0</p>
+                                    <p class="card-subtitle">Portfolio sustainability</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="overview-details">
+                            <div class="overview-section">
+                                <h3><i class="fas fa-info-circle"></i> Key Metrics</h3>
+                                <div class="metrics-grid">
+                                    <div class="metric-item">
+                                        <label>Years to Retirement:</label>
+                                        <span id="years-to-retirement">0</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <label>Current Savings Rate:</label>
+                                        <span id="savings-rate">0%</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <label>Total Household Income:</label>
+                                        <span id="household-income">$0</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <label>Emergency Fund Status:</label>
+                                        <span id="emergency-fund-status">$0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projections Tab -->
+                    <div class="tab-panel" id="projections">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-chart-line"></i> Growth Projections</h2>
+                            <p>Visual analysis of your retirement savings growth and income sources</p>
+                        </div>
+                        
+                        <div class="charts-container">
+                            <div class="chart-section">
+                                <h3>Savings Growth Over Time</h3>
+                                <canvas id="savings-chart"></canvas>
+                            </div>
+                            
+                            <div class="chart-section">
+                                <h3>Retirement Income Breakdown</h3>
+                                <canvas id="income-chart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="projection-summary">
+                            <div class="projection-item">
+                                <div class="projection-icon"><i class="fas fa-trending-up"></i></div>
+                                <div class="projection-content">
+                                    <h4>Investment Growth</h4>
+                                    <p class="projection-value" id="investment-growth">$0</p>
+                                    <p class="projection-description">Expected growth from investments over time</p>
+                                </div>
+                            </div>
+                            <div class="projection-item">
+                                <div class="projection-icon"><i class="fas fa-coins"></i></div>
+                                <div class="projection-content">
+                                    <h4>Total Contributions</h4>
+                                    <p class="projection-value" id="total-contributions">$0</p>
+                                    <p class="projection-description">Your total contributions plus employer match</p>
+                                </div>
+                            </div>
+                            <div class="projection-item">
+                                <div class="projection-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="projection-content">
+                                    <h4>Real Purchasing Power</h4>
+                                    <p class="projection-value" id="real-purchasing-power">$0</p>
+                                    <p class="projection-description">Inflation-adjusted value at retirement</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Details Tab -->
+                    <div class="tab-panel" id="accounts">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-wallet"></i> Account Breakdown</h2>
+                            <p>Detailed view of your retirement accounts and income sources</p>
+                        </div>
+                        
+                        <div class="account-breakdown">
+                            <div class="account-section">
+                                <h3><i class="fas fa-piggy-bank"></i> Retirement Accounts at Retirement</h3>
+                                <div class="account-grid">
+                                    <div class="account-item">
+                                        <div class="account-icon" style="background: linear-gradient(135deg, #0070ba, #003087);">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                        <div class="account-details">
+                                            <h4>401(k) Balance</h4>
+                                            <p class="account-value" id="future-401k">$0</p>
+                                            <p class="account-description">Employer-sponsored retirement account</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="account-item">
+                                        <div class="account-icon" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                                            <i class="fas fa-university"></i>
+                                        </div>
+                                        <div class="account-details">
+                                            <h4>IRA Balance</h4>
+                                            <p class="account-value" id="future-ira">$0</p>
+                                            <p class="account-description">Individual Retirement Account</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="account-item">
+                                        <div class="account-icon" style="background: linear-gradient(135deg, #ffc107, #fd7e14);">
+                                            <i class="fas fa-heartbeat"></i>
+                                        </div>
+                                        <div class="account-details">
+                                            <h4>HSA Balance</h4>
+                                            <p class="account-value" id="future-hsa">$0</p>
+                                            <p class="account-description">Health Savings Account (triple tax advantage)</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="account-item">
+                                        <div class="account-icon" style="background: linear-gradient(135deg, #17a2b8, #6f42c1);">
+                                            <i class="fas fa-chart-pie"></i>
+                                        </div>
+                                        <div class="account-details">
+                                            <h4>Other Investments</h4>
+                                            <p class="account-value" id="future-other">$0</p>
+                                            <p class="account-description">Taxable investment accounts</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="account-section">
+                                <h3><i class="fas fa-money-check-alt"></i> Monthly Income Sources</h3>
+                                <div class="income-sources">
+                                    <div class="income-item">
+                                        <label>Portfolio Withdrawals:</label>
+                                        <span id="portfolio-income">$0</span>
+                                    </div>
+                                    <div class="income-item">
+                                        <label>Social Security (Combined):</label>
+                                        <span id="total-social-security">$0</span>
+                                    </div>
+                                    <div class="income-item">
+                                        <label>Pension Benefits:</label>
+                                        <span id="pension-income">$0</span>
+                                    </div>
+                                    <div class="income-item">
+                                        <label>Part-time Work:</label>
+                                        <span id="part-time-income">$0</span>
+                                    </div>
+                                    <div class="income-item">
+                                        <label>Other Income:</label>
+                                        <span id="other-income">$0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analysis Tab -->
+                    <div class="tab-panel" id="analysis">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-calculator"></i> Financial Analysis</h2>
+                            <p>Deep dive into your retirement readiness and financial projections</p>
+                        </div>
+                        
+                        <div class="analysis-sections">
+                            <div class="analysis-section">
+                                <h3><i class="fas fa-chart-bar"></i> Retirement Readiness</h3>
+                                <div class="readiness-indicator">
+                                    <div class="readiness-score" id="readiness-score">
+                                        <div class="score-circle">
+                                            <span class="score-value" id="score-value">0%</span>
+                                        </div>
+                                        <p class="score-description" id="score-description">Calculating...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="analysis-section">
+                                <h3><i class="fas fa-balance-scale"></i> Risk Assessment</h3>
+                                <div class="risk-analysis">
+                                    <div class="risk-item">
+                                        <label>Longevity Risk:</label>
+                                        <span class="risk-level" id="longevity-risk">Low</span>
+                                    </div>
+                                    <div class="risk-item">
+                                        <label>Inflation Risk:</label>
+                                        <span class="risk-level" id="inflation-risk">Medium</span>
+                                    </div>
+                                    <div class="risk-item">
+                                        <label>Market Risk:</label>
+                                        <span class="risk-level" id="market-risk">Medium</span>
+                                    </div>
+                                    <div class="risk-item">
+                                        <label>Healthcare Cost Risk:</label>
+                                        <span class="risk-level" id="healthcare-risk">Medium</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="analysis-section">
+                                <h3><i class="fas fa-coins"></i> Scenario Analysis</h3>
+                                <div class="scenario-grid">
+                                    <div class="scenario-item optimistic">
+                                        <h4><i class="fas fa-arrow-up"></i> Optimistic (9% return)</h4>
+                                        <p class="scenario-value" id="optimistic-value">$0</p>
+                                    </div>
+                                    <div class="scenario-item moderate">
+                                        <h4><i class="fas fa-minus"></i> Expected (7% return)</h4>
+                                        <p class="scenario-value" id="expected-value">$0</p>
+                                    </div>
+                                    <div class="scenario-item conservative">
+                                        <h4><i class="fas fa-arrow-down"></i> Conservative (5% return)</h4>
+                                        <p class="scenario-value" id="conservative-value">$0</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendations Tab -->
+                    <div class="tab-panel" id="recommendations">
+                        <div class="panel-header">
+                            <h2><i class="fas fa-lightbulb"></i> PayPal Expert Recommendations</h2>
+                            <p>Personalized strategies to optimize your retirement planning</p>
+                        </div>
+                        
+                        <div class="recommendations-container">
+                            <div class="priority-recommendations">
+                                <h3><i class="fas fa-exclamation-triangle"></i> Priority Actions</h3>
+                                <div id="priority-recommendations-list"></div>
+                            </div>
+
+                            <div class="optimization-recommendations">
+                                <h3><i class="fas fa-tools"></i> Optimization Opportunities</h3>
+                                <div id="optimization-recommendations-list"></div>
+                            </div>
+
+                            <div class="general-recommendations">
+                                <h3><i class="fas fa-info-circle"></i> General Guidance</h3>
+                                <div id="general-recommendations-list"></div>
+                            </div>
+                        </div>
+
+                        <div class="paypal-footnote">
+                            <p><small>¹ As of June 3, 2025, the annual percentage yield (APY) for PayPal Savings is 3.80%. This is a variable rate and can change at any time. PayPal Savings is provided by Synchrony Bank, Member FDIC. PayPal is a financial technology company, not a bank.</small></p>
+                        </div>
+
+                        <div class="action-plan">
+                            <h3><i class="fas fa-tasks"></i> Your Action Plan</h3>
+                            <div class="action-steps">
+                                <div class="action-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Immediate Actions (Next 30 days)</h4>
+                                        <ul id="immediate-actions"></ul>
+                                    </div>
+                                </div>
+                                <div class="action-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Short-term Goals (Next 6 months)</h4>
+                                        <ul id="short-term-actions"></ul>
+                                    </div>
+                                </div>
+                                <div class="action-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Long-term Strategy (Next 1-2 years)</h4>
+                                        <ul id="long-term-actions"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="paypal-text">PayPal</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Security Center</a>
+                    <a href="#">Help & Contact</a>
+                </div>
+            </div>
+            <p>&copy; 2024 PayPal Holdings, Inc. All rights reserved. Plan wisely, retire confidently with PayPal.</p>
+            <p class="disclaimer">This tool is for educational purposes only and does not constitute financial advice.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="results.js"></script>
+</body>
+</html> 
